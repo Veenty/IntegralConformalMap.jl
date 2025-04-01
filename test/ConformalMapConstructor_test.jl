@@ -34,6 +34,6 @@ f, f′, f⁻¹ =  ConformalMapConstructor( γ_disc; L=1. , α = 1)
 F = similar(ζ )
 
 
-@benchmark f($F,$ζ)
+# @benchmark f($F,$ζ)
 
 scatter(vec(F), markersize = 4, color = :blue)
