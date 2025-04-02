@@ -82,7 +82,10 @@ function ConformalMapConstructor(γ, γ′, γ″; solvertype = :gmres ,  rtol =
 
     f = (F,ζ) -> C_operator!(F, ζ, γ ,γ̃, γ̃ₛ , w)
     f′ = (F,ζ) -> C_operator!(F, ζ, γ′./ γ̃ₛ ,γ̃, γ̃ₛ , w)
-    f⁻¹ = (F,z) -> (C_operator!(F, z, h ,γ, γ̃ₛ , w), z.*exp.(F))[2]
+    # f⁻¹ = (F,z) -> (C_operator!(F, z, h, γ, γ′, w), z.*exp.(F))[2]
+    finv_prestep = (F,z) -> F.= z.*exp.(F)  
+    # f⁻¹ = (F,z) -> C_operator!(F, z, γ.* exp.(h), γ, γ′, w)
+    f⁻¹ = (F,z) -> (C_operator!(F, z, h, γ, γ′, w), finv_prestep(F,z))[2]
 
 
     return f, f′, f⁻¹
