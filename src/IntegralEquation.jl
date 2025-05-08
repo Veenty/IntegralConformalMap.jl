@@ -213,7 +213,7 @@ function OversamplingFourier(τ, α  )
     τ̂_padded[end-tail_size+1:end] = τ̂[N÷2+2:end]
     τ̂_padded[end-tail_size] = τ̂_padded[N÷2+1]*(1 - (N%2)) 
 
-    return ifft(τ̂_padded)*(N/M)
+    return ifft(τ̂_padded)*(M/N)
     
 
 

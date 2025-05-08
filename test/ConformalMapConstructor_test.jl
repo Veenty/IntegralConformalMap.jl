@@ -23,7 +23,7 @@ N = 100
 
 plot( fft(γ_disc) .|> log10∘abs) 
 
-f, f′, f⁻¹ =  ConformalMapConstructor( γ_disc; L=1. , α = 3)
+f, f′, f⁻¹ =  ConformalMapConstructor( γ_disc; L=1. , α = 2)
 
 # @benchmark ConformalMapConstructor( $γ_disc; L=1. , α = 1)
 
@@ -34,6 +34,9 @@ f, f′, f⁻¹ =  ConformalMapConstructor( γ_disc; L=1. , α = 3)
 F = similar(ζ )
 
 f(F, ζ)
+scatter(vec(F), markersize = 4, color = :blue)
+scatter!(vec(γ_disc))
+current_figure()
 # G = similar(γ_disc)
 # f⁻¹(G, γ_disc/2)
 f⁻¹(ζ, F)
